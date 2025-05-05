@@ -1,0 +1,21 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    command: npm run build
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command: node server.js
+    environment:
+      - NODE_ENV=production
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db

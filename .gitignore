@@ -1,0 +1,22 @@
+# Dependency directories
+client/node_modules/
+server/node_modules/
+
+# Build output
+client/dist/
+server/build/
+
+# Env files
+.env
+.env.production
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# System junk
+.DS_Store
+
+# Docker volumes
+docker-volume/

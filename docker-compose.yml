@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  client:
+    build: ./client
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+    depends_on:
+      - server
+
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - NODE_ENV=${NODE_ENV}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
